@@ -14,10 +14,9 @@ ___
 <a name="installation"/>
 ## Installation
 
-The application will load up in the browser without having to install.  Installation is only required if you wish to modify the source code.  This assumes you have installed [Node.js](http://nodejs.org).
+Installation is required if you wish to view the application.  This assumes you have installed [Node.js](http://nodejs.org). Run the command below to install all local and server side dependencies.
 
-1.  Run 'npm install'  
-2.  Run 'gulp install'
+```npm install``` 
 
 ___
 <a name="getting-started"/>
