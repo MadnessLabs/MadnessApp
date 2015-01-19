@@ -16,6 +16,10 @@ var paths = {
         './public/html/*.html',
         './public/index.html'
     ],
+    php: [
+        './app/**/*.php',
+        '!./app/storage/**/*'
+    ],
     less: [
         './src/less/**/*.less'
     ],
@@ -26,6 +30,7 @@ var paths = {
         './bower_components/angular-route/angular-route.js',
         './bower_components/angular-animate/angular-animate.js',
         './bower_components/angular-ui-bootstrap-bower/ui-bootstrap.js',
+        './bower_components/angularytics/dist/angularytics.js',
         './src/js/lib/**.js',
         './src/js/app.js',
         './src/js/router.js',
@@ -41,8 +46,6 @@ var paths = {
 gulp.task('default', function(){
     runSequence(['less-watch', 'js-watch'], 'watch');
 });
-
-gulp.task('build', ['less', 'js']);
 
 gulp.task('less-watch', function() {
     gulp.src('./src/less/app.less')
@@ -100,6 +103,9 @@ gulp.task('watch', function() {
     gulp.watch(paths.html).on('change', function(file){
         livereload(server).changed(file.path);
     });
+    gulp.watch(paths.php).on('change', function(file){
+        livereload(server).changed(file.path);
+    });
     gulp.watch(paths.less, ['less-watch']);
     gulp.watch(paths.js, ['js-watch']);
 });
@@ -119,3 +125,5 @@ gulp.task('install', function() {
         'bower', ['copy-fonts'], ['less', 'js']
     );
 });
+
+gulp.task('build', ['less', 'js']);

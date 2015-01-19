@@ -1,4 +1,4 @@
-var app   = angular.module("app",["ngRoute","ui.bootstrap","ngAnimate"])
+var app   = angular.module("app",["ngRoute","ui.bootstrap","ngAnimate", "angularytics"])
 .config(['$httpProvider', function($httpProvider) {
         // ENABLE CORS
         $httpProvider.defaults.useXDomain = true;
@@ -10,7 +10,13 @@ var app   = angular.module("app",["ngRoute","ui.bootstrap","ngAnimate"])
       // SET POST HEADERS
       $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
     }
-]);
+])
+.config(function(AngularyticsProvider) {
+    AngularyticsProvider.setEventHandlers(['Console', 'GoogleUniversal']);
+})
+.run(function(Angularytics) {
+    Angularytics.init();
+});
 
 // GLOBAL APPLICATION CONTROLLER
 app.controller('appCtrl', function($scope, $location) {
